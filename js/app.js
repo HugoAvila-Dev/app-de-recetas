@@ -42,7 +42,7 @@ function iniciarApp() {
     function mostrarRecetas(recetas = []) {
 
         limpiarHTML(resultado);
-        
+
         const heading = document.createElement('H2');
         heading.classList.add('text-center', 'text-black', 'my-5');
         heading.textContent = recetas.length ? 'Resultados' : 'No hay Resultados';
@@ -74,6 +74,11 @@ function iniciarApp() {
             const recetaButton = document.createElement('BUTTON');
             recetaButton.classList.add('btn', 'btn-danger', 'w-100');
             recetaButton.textContent = 'Ver Receta';
+            // recetaButton.dataset.bsTarget = '#modal';
+            // recetaButton.dataset.bsToggle ='modal';
+            recetaButton.onclick = ( () => {
+                seleccionarReceta(idMeal);
+            })
 
             //Inyectar en el codigo HTML
             recetaCardBody.appendChild(recetaHeading);
@@ -85,6 +90,12 @@ function iniciarApp() {
             resultado.appendChild(recetaContenedor);
             
         })
+    }
+
+    function seleccionarReceta(id) {
+
+        const url = `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+
     }
 
     function limpiarHTML(selector) {
